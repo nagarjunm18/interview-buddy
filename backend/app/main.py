@@ -1,0 +1,19 @@
+from fastapi import FastAPI
+
+from app.api.interview import router as interview_router
+
+
+app = FastAPI(
+    title="InterviewBuddy API",
+    description="AI-powered adaptive interview preparation platform",
+    version="0.1.0"
+)
+
+app.include_router(interview_router)
+
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok"
+    }
