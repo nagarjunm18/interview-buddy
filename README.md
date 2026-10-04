@@ -103,23 +103,6 @@ For deployment on limited-memory infrastructure, the project uses TF-IDF retriev
 
 This keeps the application lightweight while still providing useful document retrieval.
 
-📁 Project Structure
-interview-buddy/
-├── backend/
-│   └── app/
-│       ├── api/
-│       ├── core/
-│       ├── llm/
-│       ├── models/
-│       ├── rag/
-│       └── services/
-│
-└── frontend/
-    └── src/
-        ├── components/
-        ├── services/
-        └── App.tsx
-
 🚀 Local Development
 Backend
 cd backend
