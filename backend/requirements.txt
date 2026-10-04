@@ -6,5 +6,5 @@ pydantic
 pydantic-settings
 python-dotenv
 ollama
-sentence-transformers
 numpy
+scikit-learn
