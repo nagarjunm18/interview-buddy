@@ -16,6 +16,15 @@ OLLAMA_MODEL = os.getenv(
     "qwen3:4b"
 )
 
+GROQ_API_KEY = os.getenv(
+    "GROQ_API_KEY"
+)
+
+GROQ_MODEL = os.getenv(
+    "GROQ_MODEL",
+    "openai/gpt-oss-20b"
+)
+
 DATABASE_URL = os.getenv(
     "DATABASE_URL"
 )
@@ -23,4 +32,9 @@ DATABASE_URL = os.getenv(
 if not DATABASE_URL:
     raise RuntimeError(
         "DATABASE_URL is not configured in .env"
+    )
+
+if not GROQ_API_KEY:
+    raise RuntimeError(
+        "GROQ_API_KEY is not configured in .env"
     )

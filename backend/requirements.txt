@@ -8,3 +8,4 @@ python-dotenv
 ollama
 numpy
 scikit-learn
+groq

@@ -1,16 +1,19 @@
 import json
 
-from ollama import Client
-from app.core.config import OLLAMA_HOST, OLLAMA_MODEL
+from groq import Groq
+
+from app.core.config import GROQ_API_KEY, GROQ_MODEL
 
 
 class OllamaClient:
+
     def __init__(self):
-        self.client = Client(host=OLLAMA_HOST)
-        self.model = OLLAMA_MODEL
+        self.client = Groq(api_key=GROQ_API_KEY)
+        self.model = GROQ_MODEL
 
     def generate(self, prompt: str) -> str:
-        response = self.client.chat(
+
+        response = self.client.chat.completions.create(
             model=self.model,
             messages=[
                 {
@@ -20,10 +23,15 @@ class OllamaClient:
             ]
         )
 
-        return response["message"]["content"]
+        return response.choices[0].message.content
 
-    def generate_structured(self, prompt: str, schema: dict) -> dict:
-        response = self.client.chat(
+    def generate_structured(
+        self,
+        prompt: str,
+        schema: dict
+    ) -> dict:
+
+        response = self.client.chat.completions.create(
             model=self.model,
             messages=[
                 {
@@ -31,7 +39,16 @@ class OllamaClient:
                     "content": prompt
                 }
             ],
-            format=schema
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "structured_response",
+                    "strict": False,
+                    "schema": schema
+                }
+            }
         )
 
-        return json.loads(response["message"]["content"])
+        return json.loads(
+            response.choices[0].message.content
+        )
