@@ -24,7 +24,7 @@ function App() {
   const [screen, setScreen] = useState<Screen>("setup");
 
   const [candidateId, setCandidateId] = useState("nagarjun");
-  const [jobDescriptionId, setJobDescriptionId] = useState("");
+  const [, setJobDescriptionId] = useState("");
 
   const [sessionId, setSessionId] = useState("");
   const [question, setQuestion] = useState("");
